@@ -182,3 +182,60 @@
     border-right-color: var(--border);
   }
 }
+
+
+/* rakenduse stiilid siia*/
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+  background: white;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.question-card {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px 0;
+  border: none;
+  background: #005aa3;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background: #003f73;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th {
+  background: #005aa3;
+  color: white;
+}
+
+td, th {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
