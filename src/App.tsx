@@ -2,6 +2,8 @@ import { useState } from "react";
 import { questions } from "./data/questions";
 import QuestionCard from "./components/QuestionCard";
 import ResultsTable from "./components/ResultsTable";
+import logo from "./assets/logo.png";
+import './App.css'
 
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -9,7 +11,8 @@ function App() {
   const [quizFinished, setQuizFinished] = useState(false);
 
   const handleAnswer = (answer: string) => {
-    const isCorrect = answer === questions[currentQuestion].correctAnswer;
+    const isCorrect =
+      answer === questions[currentQuestion].correctAnswer;
 
     const result = {
       question: questions[currentQuestion].question,
@@ -26,17 +29,53 @@ function App() {
     }
   };
 
+  const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setResults([]);
+    setQuizFinished(false);
+  };
+
   return (
-    <div>
-      <h1>Viktoriin</h1>
+    <div className="container">
+      <header>
+        <img src={logo} alt="Statistikaamet logo" className="logo" />
+        <h1>Viktoriin</h1>
+      </header>
 
       {!quizFinished ? (
-        <QuestionCard
-          question={questions[currentQuestion]}
-          onAnswer={handleAnswer}
-        />
+        <>
+          <p>
+            Küsimus {currentQuestion + 1} / {questions.length}
+          </p>
+          
+          <div
+            style={{
+              background: "#eee",
+              height: "10px",
+              borderRadius: "5px",
+              marginBottom: "20px",
+            }}
+          >
+            <div
+              style={{
+                background: "#005aa3",
+                height: "10px",
+                width: `${((currentQuestion) / questions.length) * 100}%`,
+                borderRadius: "5px",
+              }}
+            ></div>
+          </div>
+
+          <QuestionCard
+            question={questions[currentQuestion]}
+            onAnswer={handleAnswer}
+          />
+        </>
       ) : (
-        <ResultsTable results={results} />
+        <>
+          <ResultsTable results={results} />
+          <button onClick={restartQuiz}>Alusta uuesti</button>
+        </>
       )}
     </div>
   );
