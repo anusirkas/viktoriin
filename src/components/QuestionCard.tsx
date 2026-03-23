@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Question } from "../types/QuizTypes";
 
 type Props = {
@@ -6,81 +6,116 @@ type Props = {
   onAnswer: (answer: string) => void;
 };
 
+const QUESTION_TIME = 20;
+
 function QuestionCard({ question, onAnswer }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(20);
+  const [timeLeft, setTimeLeft] = useState(QUESTION_TIME);
 
   useEffect(() => {
     if (showFeedback) return;
 
-    if (timeLeft === 0) {
+    if (timeLeft <= 0) {
       setShowFeedback(true);
       return;
     }
 
-    const timer = setTimeout(() => {
-      setTimeLeft(timeLeft - 1);
+    const timer = window.setTimeout(() => {
+      setTimeLeft((prev) => prev - 1);
     }, 1000);
 
-    return () => clearTimeout(timer);
+    return () => window.clearTimeout(timer);
   }, [timeLeft, showFeedback]);
 
-  const handleClick = (option: string) => {
-    if (selectedAnswer || showFeedback) return;
+  const isCorrectAnswer = selectedAnswer === question.correctAnswer;
+  const timedOut = showFeedback && selectedAnswer === null;
+
+  const feedbackText = useMemo(() => {
+    if (timedOut) {
+      return "Aeg sai otsa.";
+    }
+
+    if (isCorrectAnswer) {
+      return "Õige vastus!";
+    }
+
+    return "Vale vastus!";
+  }, [isCorrectAnswer, timedOut]);
+
+  const feedbackClassName = isCorrectAnswer ? "correct" : "incorrect";
+
+  const handleSelectAnswer = (option: string) => {
+    if (showFeedback) return;
+
     setSelectedAnswer(option);
     setShowFeedback(true);
   };
 
-  const handleNext = () => {
-    onAnswer(selectedAnswer || "");
-    setSelectedAnswer(null);
-    setShowFeedback(false);
-    setTimeLeft(20);
+  const handleNextQuestion = () => {
+    onAnswer(selectedAnswer ?? "");
   };
 
-  const getButtonStyle = (option: string) => {
-    if (!showFeedback) return {};
+  const getOptionClassName = (option: string) => {
+    const classNames = ["option-button"];
+
+    if (!showFeedback) return classNames.join(" ");
 
     if (option === question.correctAnswer) {
-      return { backgroundColor: "green" };
+      classNames.push("correct");
+    } else if (option === selectedAnswer) {
+      classNames.push("incorrect");
+    } else {
+      classNames.push("muted");
     }
 
-    if (option === selectedAnswer) {
-      return { backgroundColor: "red" };
-    }
-
-    return { backgroundColor: "#ccc" };
+    return classNames.join(" ");
   };
 
   return (
     <div className="question-card">
+      <div className="question-meta">
+        <span className={`timer-badge ${timeLeft <= 5 ? "warning" : ""}`}>
+          {timeLeft}s
+        </span>
+      </div>
+
       <h2>{question.question}</h2>
 
-      <p>Aega jäänud: {timeLeft} s</p>
-
-      <div>
-        {question.options.map((option) => (
+      <div className="options-list">
+        {question.options.map((option, index) => (
           <button
             key={option}
-            onClick={() => handleClick(option)}
+            type="button"
+            className={getOptionClassName(option)}
+            onClick={() => handleSelectAnswer(option)}
             disabled={showFeedback}
-            style={getButtonStyle(option)}
           >
-            {option}
+            <span className="option-letter">
+              {String.fromCharCode(65 + index)}
+            </span>
+            <span className="option-text">{option}</span>
           </button>
         ))}
       </div>
 
       {showFeedback && (
-        <div>
-          {selectedAnswer === question.correctAnswer ? (
-            <p style={{ color: "green" }}>Õige vastus!</p>
-          ) : (
-            <p style={{ color: "red" }}>Vale vastus!</p>
+        <div className={`feedback-box ${feedbackClassName}`}>
+          <p className="feedback-title">{feedbackText}</p>
+
+          {!isCorrectAnswer && (
+            <p className="feedback-detail">
+              Õige vastus oli: <strong>{question.correctAnswer}</strong>
+            </p>
           )}
 
-          <button onClick={handleNext}>Järgmine küsimus</button>
+          <button
+            type="button"
+            className="primary-button next-button"
+            onClick={handleNextQuestion}
+          >
+            Järgmine küsimus
+          </button>
         </div>
       )}
     </div>
