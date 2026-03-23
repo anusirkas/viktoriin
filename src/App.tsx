@@ -122,10 +122,11 @@ function App() {
 
               <button
                 type="button"
-                className="primary-button restart-button"
+                className="ghost-button"
                 onClick={restartQuiz}
+                aria-label="Alusta viktoriini uuesti"
               >
-                Proovi uuesti
+                Alusta uuesti
               </button>
             </>
           )}
