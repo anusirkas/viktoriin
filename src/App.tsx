@@ -7,6 +7,7 @@ import { questions } from "./data/questions";
 import type { Result } from "./types/QuizTypes";
 
 function App() {
+  const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [results, setResults] = useState<Result[]>([]);
   const [quizFinished, setQuizFinished] = useState(false);
@@ -37,6 +38,7 @@ function App() {
     setCurrentQuestion(0);
     setResults([]);
     setQuizFinished(false);
+    setQuizStarted(false);
   };
 
   const score = useMemo(
@@ -57,14 +59,47 @@ function App() {
         <section className="quiz-card">
           <header className="quiz-header">
             <img src={logo} alt="Statistikaameti logo" className="logo" />
-            <p className="eyebrow">Eesti statistika viktoriin</p>
             <h1>Viktoriin</h1>
             <p className="subtitle">
               Kontrolli oma teadmisi ja saa kohe tagasisidet.
             </p>
           </header>
 
-          {!quizFinished ? (
+          {!quizStarted ? (
+            <section className="intro-card">
+              <p className="summary-label">Tere tulemast</p>
+              <h2 className="intro-title">Kas oled valmis viktoriiniks?</h2>
+              <p className="intro-text">
+                Sind ootab 3 küsimust Statistikaameti andmete, nimede ja Eesti elu kohta.
+              </p>
+
+              <div className="intro-rules">
+                <div className="intro-rule">
+                  <span className="intro-rule-number">01</span>
+                  <p>Iga küsimuse jaoks on aega 15 sekundit.</p>
+                </div>
+
+                <div className="intro-rule">
+                  <span className="intro-rule-number">02</span>
+                  <p>Pärast iga vastust saad kohe tagasisidet.</p>
+                </div>
+
+                <div className="intro-rule">
+                  <span className="intro-rule-number">03</span>
+                  <p>Lõpus näed oma tulemust ja vastuste ülevaadet.</p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="primary-button start-button"
+                onClick={() => setQuizStarted(true)}
+                aria-label="Alusta viktoriini"
+              >
+                Alusta viktoriini
+              </button>
+            </section>
+          ) : !quizFinished ? (
             <>
               <div className="quiz-topbar">
                 <span className="question-counter">
@@ -75,6 +110,7 @@ function App() {
                   type="button"
                   className="ghost-button"
                   onClick={restartQuiz}
+                  aria-label="Alusta viktoriini uuesti"
                 >
                   Alusta uuesti
                 </button>
@@ -122,9 +158,8 @@ function App() {
 
               <button
                 type="button"
-                className="ghost-button"
+                className="primary-button restart-button"
                 onClick={restartQuiz}
-                aria-label="Alusta viktoriini uuesti"
               >
                 Alusta uuesti
               </button>

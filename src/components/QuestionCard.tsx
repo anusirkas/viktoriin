@@ -6,7 +6,7 @@ type Props = {
   onAnswer: (answer: string) => void;
 };
 
-const QUESTION_TIME = 20;
+const QUESTION_TIME = 15;
 
 function QuestionCard({ question, onAnswer }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -77,55 +77,62 @@ function QuestionCard({ question, onAnswer }: Props) {
     return classes.join(" ");
   };
 
-  return (
+    return (
     <section className="question-card" aria-live="polite">
-      <div className="question-meta">
-        <span
-          className={`timer-badge ${timeLeft <= 5 ? "warning" : ""}`}
-          aria-label={`Aega jäänud ${timeLeft} sekundit`}
+        <div className="question-meta centered">
+        <div
+            className={`timer-circle ${timeLeft <= 5 ? "warning" : ""}`}
+            aria-label={`Aega jäänud ${timeLeft} sekundit`}
+            style={{ ["--progress" as string]: `${(timeLeft / QUESTION_TIME) * 100}%` }}
         >
-          {timeLeft}s
-        </span>
-      </div>
+            <span>{timeLeft}s</span>
+        </div>
+        </div>
 
-      <h2>{question.question}</h2>
+        <h2>{question.question}</h2>
 
-      <div className="options-list" role="list" aria-label="Vastusevariandid">
+        <div className="options-list" role="list" aria-label="Vastusevariandid">
         {question.options.map((option, index) => (
-          <button
+            <button
             key={option}
             type="button"
             className={getOptionClassName(option)}
             onClick={() => handleSelectAnswer(option)}
             disabled={showFeedback}
             aria-label={`Vastus ${String.fromCharCode(65 + index)}: ${option}`}
-          >
+            >
             <span className="option-letter" aria-hidden="true">
-              {String.fromCharCode(65 + index)}
+                {String.fromCharCode(65 + index)}
             </span>
 
             <span className="option-text">{option}</span>
-          </button>
+            </button>
         ))}
-      </div>
-
-      {showFeedback && (
-        <div className={`feedback-box ${feedbackClassName}`} role="status">
-          <p className="feedback-title">{feedbackTitle}</p>
-          <p className="feedback-detail">{feedbackDescription}</p>
-
-          <button
-            type="button"
-            className="primary-button next-button"
-            onClick={handleNextQuestion}
-            aria-label="Mine järgmise küsimuse juurde"
-          >
-            Järgmine küsimus
-          </button>
         </div>
-      )}
+
+        {showFeedback && (
+        <>
+            <div className={`feedback-box ${feedbackClassName}`} role="status">
+                <p className="feedback-title">{feedbackTitle}</p>
+                <p className="feedback-detail">{feedbackDescription}</p>
+
+                {question.fact && <p className="fun-fact">💡 {question.fact}</p>}
+            </div>
+
+            <div className="next-button-wrapper">
+                <button
+                    type="button"
+                    className="primary-button next-button"
+                    onClick={handleNextQuestion}
+                    aria-label="Mine järgmise küsimuse juurde"
+                >
+                    Järgmine küsimus
+                </button>
+            </div>
+        </>
+        )}
     </section>
-  );
+    );
 }
 
 export default QuestionCard;
