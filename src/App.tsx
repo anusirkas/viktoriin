@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
+import IntroCard from "./components/IntroCard";
 import QuestionCard from "./components/QuestionCard";
 import ResultsTable from "./components/ResultsTable";
 import { questions } from "./data/questions";
@@ -63,36 +64,7 @@ function App() {
           </header>
 
           {!quizStarted ? (
-            <section className="intro-card">
-              <h2 className="intro-title">Kas oled valmis viktoriiniks?</h2>
-
-              <div className="intro-rules">
-                <div className="intro-rule">
-                  <span className="intro-rule-number">01</span>
-                  <p>Sind ootab ees 3 küsimust.</p>
-                </div>
-
-                <div className="intro-rule">
-                  <span className="intro-rule-number">02</span>
-                  <p>Iga küsimuse jaoks on aega 15 sekundit.</p>
-                </div>
-
-                <div className="intro-rule">
-                  <span className="intro-rule-number">03</span>
-                  <p>Pärast iga vastust saad kohe tagasisidet.</p>
-                </div>
-              </div>
-
-              <div className="start-button-wrapper">
-                <button
-                  type="button"
-                  className="primary-button start-button"
-                  onClick={() => setQuizStarted(true)}
-                >
-                  Alusta viktoriini
-                </button>
-              </div>
-            </section>
+            <IntroCard onStart={() => setQuizStarted(true)} />
           ) : !quizFinished ? (
             <>
               <div className="quiz-topbar">
