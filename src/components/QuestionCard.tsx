@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Question } from "../types/QuizTypes";
 
 type Props = {
@@ -9,30 +9,63 @@ type Props = {
 function QuestionCard({ question, onAnswer }: Props) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(20);
+
+  useEffect(() => {
+    if (showFeedback) return;
+
+    if (timeLeft === 0) {
+      setShowFeedback(true);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [timeLeft, showFeedback]);
 
   const handleClick = (option: string) => {
+    if (selectedAnswer || showFeedback) return;
     setSelectedAnswer(option);
     setShowFeedback(true);
   };
 
   const handleNext = () => {
-    if (selectedAnswer) {
-      onAnswer(selectedAnswer);
-      setSelectedAnswer(null);
-      setShowFeedback(false);
+    onAnswer(selectedAnswer || "");
+    setSelectedAnswer(null);
+    setShowFeedback(false);
+    setTimeLeft(20);
+  };
+
+  const getButtonStyle = (option: string) => {
+    if (!showFeedback) return {};
+
+    if (option === question.correctAnswer) {
+      return { backgroundColor: "green" };
     }
+
+    if (option === selectedAnswer) {
+      return { backgroundColor: "red" };
+    }
+
+    return { backgroundColor: "#ccc" };
   };
 
   return (
     <div className="question-card">
       <h2>{question.question}</h2>
 
+      <p>Aega jäänud: {timeLeft} s</p>
+
       <div>
         {question.options.map((option) => (
           <button
             key={option}
             onClick={() => handleClick(option)}
-            style={{ display: "block", margin: "10px 0" }}
+            disabled={showFeedback}
+            style={getButtonStyle(option)}
           >
             {option}
           </button>

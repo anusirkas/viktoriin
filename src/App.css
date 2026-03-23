@@ -239,3 +239,17 @@ td, th {
   padding: 10px;
   border: 1px solid #ddd;
 }
+
+.progress-bar {
+  background: #e0e0e0;
+  height: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.progress {
+  background: #005aa3;
+  height: 12px;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}

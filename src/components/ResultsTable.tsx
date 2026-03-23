@@ -40,9 +40,13 @@ function ResultsTable({ results }: Props) {
 }
 
 function PersonalMessage({ score, total }: { score: number; total: number }) {
-  if (score === total) return <p>Suurepärane tulemus!</p>;
-  if (score >= total / 2) return <p>Päris hea!</p>;
-  return <p>Harjuta veel ja proovi uuesti!</p>;
+  if (score === total)
+    return <p>Suurepärane! Vastasin kõik õigesti.</p>;
+
+  if (score >= total / 2)
+    return <p>Hea tulemus! Mõned vead, aga tubli.</p>;
+
+  return <p>Proovi uuesti ja paranda tulemust!</p>;
 }
 
 export default ResultsTable;

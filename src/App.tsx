@@ -35,6 +35,7 @@ function App() {
     setQuizFinished(false);
   };
 
+
   return (
     <div className="container">
       <header>
@@ -47,21 +48,12 @@ function App() {
           <p>
             Küsimus {currentQuestion + 1} / {questions.length}
           </p>
-          
-          <div
-            style={{
-              background: "#eee",
-              height: "10px",
-              borderRadius: "5px",
-              marginBottom: "20px",
-            }}
-          >
+
+          <div className="progress-bar">
             <div
+              className="progress"
               style={{
-                background: "#005aa3",
-                height: "10px",
-                width: `${((currentQuestion) / questions.length) * 100}%`,
-                borderRadius: "5px",
+                width: `${(currentQuestion / questions.length) * 100}%`,
               }}
             ></div>
           </div>
@@ -73,7 +65,12 @@ function App() {
         </>
       ) : (
         <>
+          <h2>
+            Skoor: {results.filter((r) => r.isCorrect).length} / {results.length}
+          </h2>
+
           <ResultsTable results={results} />
+
           <button onClick={restartQuiz}>Alusta uuesti</button>
         </>
       )}
