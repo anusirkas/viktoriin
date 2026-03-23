@@ -60,44 +60,38 @@ function App() {
           <header className="quiz-header">
             <img src={logo} alt="Statistikaameti logo" className="logo" />
             <h1>Viktoriin</h1>
-            <p className="subtitle">
-              Kontrolli oma teadmisi ja saa kohe tagasisidet.
-            </p>
           </header>
 
           {!quizStarted ? (
             <section className="intro-card">
-              <p className="summary-label">Tere tulemast</p>
               <h2 className="intro-title">Kas oled valmis viktoriiniks?</h2>
-              <p className="intro-text">
-                Sind ootab 3 küsimust Statistikaameti andmete, nimede ja Eesti elu kohta.
-              </p>
 
               <div className="intro-rules">
                 <div className="intro-rule">
                   <span className="intro-rule-number">01</span>
-                  <p>Iga küsimuse jaoks on aega 15 sekundit.</p>
+                  <p>Sind ootab ees 3 küsimust.</p>
                 </div>
 
                 <div className="intro-rule">
                   <span className="intro-rule-number">02</span>
-                  <p>Pärast iga vastust saad kohe tagasisidet.</p>
+                  <p>Iga küsimuse jaoks on aega 15 sekundit.</p>
                 </div>
 
                 <div className="intro-rule">
                   <span className="intro-rule-number">03</span>
-                  <p>Lõpus näed oma tulemust ja vastuste ülevaadet.</p>
+                  <p>Pärast iga vastust saad kohe tagasisidet.</p>
                 </div>
               </div>
 
-              <button
-                type="button"
-                className="primary-button start-button"
-                onClick={() => setQuizStarted(true)}
-                aria-label="Alusta viktoriini"
-              >
-                Alusta viktoriini
-              </button>
+              <div className="start-button-wrapper">
+                <button
+                  type="button"
+                  className="primary-button start-button"
+                  onClick={() => setQuizStarted(true)}
+                >
+                  Alusta viktoriini
+                </button>
+              </div>
             </section>
           ) : !quizFinished ? (
             <>
