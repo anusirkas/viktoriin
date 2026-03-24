@@ -7,7 +7,7 @@ Rakendus on ehitatud React + TypeScript + Vite stackiga ning sisaldab ka E2E tes
 
 ## 🚀 Demo
 
-👉 [Ava rakendus](https://viktoriin-nu.vercel.app/)
+👉 **Live demo:** [viktoriin-nu.vercel.app](https://viktoriin-nu.vercel.app/)
 
 ---
 
@@ -76,10 +76,12 @@ UI on loodud Statistikaameti CVI põhjal:
 ## 📁 Projekti struktuur
 ```bash
 src/
+
 assets/
 logo_coat_of_arms.png
 logo_png
 taustata.png
+
 components/
 IntroCard.tsx
 QuestionCard.tsx
@@ -87,10 +89,13 @@ QuizTopBar.tsx
 ProgressBar.tsx
 ScoreSummary.tsx
 ResultsTable.tsx
+
 data/
 questions.ts
+
 types/
 QuizTypes.ts
+
 App.css
 App.tsx
 index.css
