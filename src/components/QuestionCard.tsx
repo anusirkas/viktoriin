@@ -47,7 +47,11 @@ function QuestionCard({ question, onAnswer }: Props) {
     return `Õige vastus oli: ${question.correctAnswer}`;
   }, [isCorrect, question.correctAnswer]);
 
-  const feedbackClassName = isCorrect ? "correct" : "incorrect";
+  const feedbackClassName = isTimedOut
+    ? "warning"
+    : isCorrect
+      ? "correct"
+      : "incorrect";
 
   const handleSelectAnswer = (option: string) => {
     if (showFeedback) return;

@@ -19,23 +19,33 @@ function ResultsTable({ results }: Props) {
             </tr>
           </thead>
           <tbody>
-            {results.map((result, index) => (
-              <tr key={`${result.question}-${index}`}>
-                <td>{result.question}</td>
-                <td>{result.selectedAnswer}</td>
-                <td>
-                  <span
-                    className={
-                      result.isCorrect
-                        ? "result-badge correct"
-                        : "result-badge incorrect"
-                    }
-                  >
-                    {result.isCorrect ? "Õige" : "Vale"}
-                  </span>
-                </td>
-              </tr>
-            ))}
+            {results.map((result, index) => {
+              const isUnanswered =
+                !result.selectedAnswer ||
+                result.selectedAnswer === "Vastus jäi valimata";
+
+              const badgeClassName = isUnanswered
+                ? "result-badge unanswered"
+                : result.isCorrect
+                  ? "result-badge correct"
+                  : "result-badge incorrect";
+
+              const badgeLabel = isUnanswered
+                ? "Vastamata"
+                : result.isCorrect
+                  ? "Õige"
+                  : "Vale";
+
+              return (
+                <tr key={`${result.question}-${index}`}>
+                  <td>{result.question}</td>
+                  <td>{result.selectedAnswer || "Vastus jäi valimata"}</td>
+                  <td>
+                    <span className={badgeClassName}>{badgeLabel}</span>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

@@ -1,11 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 :root {
+  /* esmased brändivärvid */
   --black: #000000;
   --white: #ffffff;
   --gray-dark: #565656;
   --gray-mid: #dddddd;
   --gray-light: #f8f8f8;
+
+  /* tagasiside värvid */
+  --success: #4dc14d;
+  --error: #dc1919;
+  --warning: #fcc73b;
+
+  /* õrnad taustad */
+  --success-bg: #eef9ee;
+  --error-bg: #fff3f3;
+  --warning-bg: #fff8e8;
 
   --bg: var(--gray-light);
   --text: var(--black);
