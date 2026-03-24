@@ -11,6 +11,12 @@ Rakendus on ehitatud React + TypeScript + Vite stackiga ning sisaldab ka E2E tes
 
 ---
 
+## 📸 Screenshot
+
+![Question](./screenshots/question.png)
+
+---
+
 ## ✨ Funktsionaalsus
 
 - Küsimused kuvatakse ükshaaval
@@ -129,9 +135,3 @@ npx playwright test
 
 ## 👤 Autor
 Anu Sirkas
-
----
-
-## 📸 Screenshot
-
-![Question](./screenshots/question.png)
