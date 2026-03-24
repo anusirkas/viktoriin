@@ -1,73 +1,143 @@
-# React + TypeScript + Vite
+# 🧠 Statistikaameti Viktoriin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interaktiivne viktoriinirakendus, mis kontrollib kasutaja teadmisi valikvastustega küsimuste abil.  
+Rakendus on ehitatud React + TypeScript + Vite stackiga ning sisaldab ka E2E teste Playwrightiga.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Demo
 
-## React Compiler
+👉 Lisa siia deploy link (nt Vercel / Netlify)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📸 Screenshots
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Intro vaade
+![Intro](./screenshots/intro.png)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Küsimuse vaade
+![Question](./screenshots/question.png)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Tulemuste vaade
+![Results](./screenshots/results.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## ✨ Funktsionaalsus
+
+- Küsimused kuvatakse ükshaaval
+- Igal küsimusel on mitu vastusevarianti
+- Kohene tagasiside:
+  - Õige vastus
+  - Vale vastus
+  - Aeg sai otsa
+- Taimer igale küsimusele
+- Edenemisriba (progress bar)
+- Reaalajas skoor
+- Lõpus:
+  - lõppskoor
+  - isikupärastatud sõnum
+  - tulemuste tabel:
+    - küsimus
+    - kasutaja vastus
+    - tulemus (õige / vale / vastamata)
+
+---
+
+## 🧪 Testimine
+
+Rakendus sisaldab Playwright E2E teste:
+
+- rakenduse avamine
+- küsimusele vastamine
+- skoori muutumine
+- vale vastuse kontroll
+- lõpptulemuse kuvamine
+
+Testid jooksevad:
+- Chromium
+- Firefox
+- WebKit
+
+---
+
+## 🛠️ Tehnoloogiad
+
+- React
+- TypeScript
+- Vite
+- Playwright (E2E testid)
+- CSS (CVI-põhine disainisüsteem)
+
+---
+
+## 🎨 Disain
+
+UI on loodud Statistikaameti CVI (Corporate Visual Identity) põhjal:
+
+- Roboto font
+- must-valge-hall värviskeem
+- tagasiside värvid:
+  - roheline (õige)
+  - punane (vale)
+  - kollane (vastamata / aeg sai otsa)
+- selge tüpograafia ja visuaalne hierarhia
+
+---
+
+## 📁 Projekti struktuur
+src/
+assets/
+logo_coat_of_arms.png
+logo_png
+taustata.png
+components/
+IntroCard.tsx
+QuestionCard.tsx
+QuizTopBar.tsx
+ProgressBar.tsx
+ScoreSummary.tsx
+ResultsTable.tsx
+data/
+questions.ts
+types/
+QuizTypes.ts
+App.css
+App.tsx
+index.css
+main.tsx
+
+---
+
+## ⚙️ Käivitamine lokaalselt
+
+```bash
+npm install
+npm run dev
+
+Ava brauseris:
+http://localhost:5173/
+
+🧪 Testide käivitamine
+
+npx playwright test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔁 Edasised parendused (ideed)
+mobiilivaate täiendav optimeerimine
+animatsioonid ja micro-interactions
+küsimuste API-st laadimine
+tulemuste salvestamine (nt localStorage)
+kasutaja taseme analüüs
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 👤 Autor
+Anu Sirkas
+
+---
+
+## 📁 Screenshot
+
+![Question](./screenshots/question.png)
