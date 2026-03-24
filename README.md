@@ -1,4 +1,4 @@
-# 🧠 Statistikaameti Viktoriin
+# 🧠 Statistikaameti viktoriin
 
 Interaktiivne viktoriinirakendus, mis kontrollib kasutaja teadmisi valikvastustega küsimuste abil.  
 Rakendus on ehitatud React + TypeScript + Vite stackiga ning sisaldab ka E2E teste Playwrightiga.
@@ -7,20 +7,7 @@ Rakendus on ehitatud React + TypeScript + Vite stackiga ning sisaldab ka E2E tes
 
 ## 🚀 Demo
 
-👉 Lisa siia deploy link (nt Vercel / Netlify)
-
----
-
-## 📸 Screenshots
-
-### Intro vaade
-![Intro](./screenshots/intro.png)
-
-### Küsimuse vaade
-![Question](./screenshots/question.png)
-
-### Tulemuste vaade
-![Results](./screenshots/results.png)
+👉 [Ava rakendus](https://viktoriin-nu.vercel.app/)
 
 ---
 
@@ -74,7 +61,7 @@ Testid jooksevad:
 
 ## 🎨 Disain
 
-UI on loodud Statistikaameti CVI (Corporate Visual Identity) põhjal:
+UI on loodud Statistikaameti CVI põhjal:
 
 - Roboto font
 - must-valge-hall värviskeem
@@ -87,6 +74,7 @@ UI on loodud Statistikaameti CVI (Corporate Visual Identity) põhjal:
 ---
 
 ## 📁 Projekti struktuur
+```bash
 src/
 assets/
 logo_coat_of_arms.png
@@ -107,7 +95,7 @@ App.css
 App.tsx
 index.css
 main.tsx
-
+```
 ---
 
 ## ⚙️ Käivitamine lokaalselt
@@ -138,6 +126,6 @@ Anu Sirkas
 
 ---
 
-## 📁 Screenshot
+## 📸 Screenshot
 
 ![Question](./screenshots/question.png)
