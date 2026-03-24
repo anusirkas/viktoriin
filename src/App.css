@@ -31,8 +31,8 @@
 }
 
 .quiz-card {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid #d9d9d9;
+  background: var(--white);
+  border: 1px solid var(--line);
   border-radius: 0;
   box-shadow: 0 18px 40px rgba(17, 17, 17, 0.08);
   backdrop-filter: blur(8px);
@@ -41,7 +41,7 @@
 
 .quiz-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .logo {
@@ -50,34 +50,39 @@
 }
 
 .quiz-header h1 {
-  margin: 0 0 14px;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  margin: 0 0 10px;
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
 }
 
 .eyebrow {
   margin: 0 0 10px;
-  font-size: 13px;
+  font-size: var(--label-size);
+  line-height: var(--label-line);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .intro-card {
-  border: 2px solid #111111;
-  background: #ffffff;
+  border: 2px solid var(--black);
+  background: var(--white);
   padding: 28px;
   text-align: left;
 }
 
 .intro-title {
   margin: 24px 0 12px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  line-height: 1.1;
+  font-size: var(--h2-size);
+  line-height: var(--h2-line);
 }
 
+.score-title {
+  margin: 0 0 10px;
+  font-size: var(--h1-size);
+  line-height: var(--h1-line);
+}
 
 .intro-rules {
   display: grid;
@@ -91,7 +96,7 @@
   gap: 14px;
   align-items: center;
   padding: 14px 0;
-  border-top: 1px solid #dcdcdc;
+  border-top: 1px solid var(--line);
 }
 
 .intro-rule:last-child {
@@ -133,22 +138,21 @@
   height: 10px;
   overflow: hidden;
   border-radius: 0;
-  background: #e8e8e8;
+  background: var(--gray-mid);
   margin-bottom: 28px;
 }
 
 .progress {
   height: 100%;
   border-radius: 0;
-  background: #111111;
+  background: var(--black);
   transition: width 0.35s ease;
 }
 
 .question-card h2 {
-  margin: 0 0 20px;
-  font-size: clamp(1.5rem, 3vw, 2.1rem);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  margin: 0 0 16px; /* oli 20*/
+  font-size: var(--h3-size);
+  line-height: var(--h3-line);
 }
 
 .question-meta {
@@ -162,22 +166,22 @@
 
 .timer-circle {
   --progress: 100%;
-  width: 88px;
-  height: 88px;
+  width: 72px; /* oli 88px nii w kui h */
+  height: 72px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background:
-    conic-gradient(#111111 var(--progress), #e8e8e8 0),
-    #ffffff;
+    conic-gradient(var(--black) var(--progress), var(--gray-mid) 0),
+    var(--white);
+  border: 2px solid var(--black);
   position: relative;
-  border: 2px solid #111111;
 }
 
 .timer-circle::before {
   content: "";
   position: absolute;
-  inset: 8px;
+  inset: 7px; /* oli 8*/
   border-radius: 50%;
   background: #ffffff;
 }
@@ -185,7 +189,7 @@
 .timer-circle span {
   position: relative;
   z-index: 1;
-  font-size: 1rem;
+  font-size: var(--body-md-size);
   font-weight: 700;
   color: #111111;
 }
@@ -203,10 +207,11 @@
 
 .option-button {
   width: 100%;
-  border: 2px solid #111111;
+  border: 2px solid var(--black);
+  background: var(--white);
+  color: var(--text);
   border-radius: 0;
-  background: #ffffff;
-  padding: 16px 18px;
+  padding: 14px 16px; /*16px 18px;*/
   display: flex;
   align-items: center;
   gap: 14px;
@@ -218,7 +223,6 @@
     transform 0.18s ease;
   text-align: left;
   font: inherit;
-  color: #111111;
 }
 
 .option-button:hover:not(:disabled) {
@@ -232,14 +236,14 @@
 }
 
 .option-letter {
-  width: 40px;
-  height: 40px;
+  width: 36px; /*olid 40*/
+  height: 36px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
   border-radius: 0;
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
+  background: var(--gray-light);
+  border: 1px solid var(--line);
   font-weight: 700;
 }
 
@@ -274,15 +278,15 @@
 }
 
 .option-button.muted {
-  background: #f3f3f3;
-  color: #7a7a7a;
-  border-color: #cfcfcf;
+  background: var(--gray-light);
+  color: var(--muted);
+  border-color: var(--line);
 }
 
 .feedback-box {
-  margin-top: 18px;
+  margin-top: 16px;
+  padding: 16px;
   border-radius: 0;
-  padding: 18px;
   border: 2px solid #111111;
   background: #ffffff;
   animation: fadeIn 0.25s ease;
@@ -305,15 +309,16 @@
 }
 
 .feedback-title {
-  margin: 0 0 6px;
-  font-size: 1.05rem;
+  margin: 0 0 4px;
+  font-size: 1rem;
   font-weight: 700;
 }
 
 .feedback-detail {
   margin: 0;
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.45;
+  font-size: 0.95rem;
 }
 
 .primary-button,
@@ -332,7 +337,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 18px;
+  padding: 12px 16px;
   background: #111111;
   color: #ffffff;
   font-weight: 700;
@@ -361,7 +366,7 @@
 .next-button-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .restart-button,
@@ -382,13 +387,6 @@
   border-radius: 0;
   background: #ffffff;
   border: 2px solid #111111;
-}
-
-
-.score-title {
-  margin: 0 0 10px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1;
 }
 
 .summary-message {
@@ -421,14 +419,14 @@
 .results-table th,
 .results-table td {
   padding: 14px 16px;
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
 }
 
 .results-table th {
   font-size: 0.95rem;
-  background: #f5f5f5;
+  background: var(--gray-light);
 }
 
 .results-table tr:last-child td {
@@ -444,17 +442,17 @@
   border-radius: 0;
   font-size: 0.88rem;
   font-weight: 700;
-  border: 2px solid #111111;
+  border: 2px solid var(--black);
 }
 
 .result-badge.correct {
-  background: #111111;
-  color: #ffffff;
+  background: var(--black);
+  color: var(--white);
 }
 
 .result-badge.incorrect {
-  background: #ffffff;
-  color: #111111;
+  background: var(--white);
+  color: var(--black);
 }
 
 .restart-button {
@@ -503,9 +501,26 @@
 }
 
 .fun-fact {
-  margin-top: 12px;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.intro-rule p,
+.option-text,
+.feedback-detail,
+.summary-message,
+.fun-fact {
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-line);
+  font-weight: 400;
+}
+
+.live-score,
+.result-badge,
+.results-table th,
+.intro-rule-number {
+  font-size: var(--body-sm-size);
+  line-height: var(--body-sm-line);
 }
 
 .feedback-box.correct .fun-fact {
@@ -513,6 +528,6 @@
 }
 
 .feedback-box.incorrect .fun-fact {
-  color: #444444;
+  color: var(--muted);
 }
 
