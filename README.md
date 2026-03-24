@@ -118,11 +118,12 @@ npx playwright test
 ```
 
 ## 🔁 Edasised parendused (ideed)
-mobiilivaate täiendav optimeerimine
-animatsioonid ja micro-interactions
-küsimuste API-st laadimine
-tulemuste salvestamine (nt localStorage)
-kasutaja taseme analüüs
+
+- mobiilivaate täiendav optimeerimine
+- animatsioonid ja micro-interactions
+- küsimuste API-st laadimine
+- tulemuste salvestamine (nt localStorage)
+- kasutaja taseme analüüs
 
 ---
 
