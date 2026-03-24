@@ -2,8 +2,11 @@ import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 import IntroCard from "./components/IntroCard";
+import ProgressBar from "./components/ProgressBar";
 import QuestionCard from "./components/QuestionCard";
+import QuizTopBar from "./components/QuizTopBar";
 import ResultsTable from "./components/ResultsTable";
+import ScoreSummary from "./components/ScoreSummary";
 import { questions } from "./data/questions";
 import type { Result } from "./types/QuizTypes";
 
@@ -19,7 +22,7 @@ function App() {
 
     const newResult: Result = {
       question: activeQuestion.question,
-      selectedAnswer: answer || "Vastus jäi valimata",
+      selectedAnswer: answer,
       isCorrect,
     };
 
@@ -67,38 +70,14 @@ function App() {
             <IntroCard onStart={() => setQuizStarted(true)} />
           ) : !quizFinished ? (
             <>
-              <div className="quiz-topbar">
-                <span className="question-counter">
-                  Küsimus {currentQuestion + 1} / {questions.length}
-                </span>
+              <QuizTopBar
+                currentQuestion={currentQuestion + 1}
+                totalQuestions={questions.length}
+                score={score}
+                onRestart={restartQuiz}
+              />
 
-                <span className="live-score" aria-label={`Praegune skoor ${score}`}>
-                  Skoor: {score}
-                </span>
-
-                <button
-                  type="button"
-                  className="ghost-button"
-                  onClick={restartQuiz}
-                  aria-label="Alusta viktoriini uuesti"
-                >
-                  Alusta uuesti
-                </button>
-              </div>
-
-              <div
-                className="progress-bar"
-                role="progressbar"
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={Math.round(progressPercentage)}
-                aria-label="Viktoriini edenemine"
-              >
-                <div
-                  className="progress"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
+              <ProgressBar value={progressPercentage} />
 
               <QuestionCard
                 key={currentQuestion}
@@ -108,21 +87,10 @@ function App() {
             </>
           ) : (
             <>
-              <section className="score-summary">
-                <p className="summary-label">Lõpptulemus</p>
-                <h2 className="score-title">
-                  {score} / {questions.length}
-                </h2>
-                <p className="summary-message">
-                  {score === questions.length &&
-                    "Suurepärane tulemus — kõik vastused olid õiged."}
-                  {score < questions.length &&
-                    score >= Math.ceil(questions.length / 2) &&
-                    "Tubli tulemus — enamik vastuseid olid õiged."}
-                  {score < Math.ceil(questions.length / 2) &&
-                    "Hea algus — proovi uuesti ja paranda tulemust."}
-                </p>
-              </section>
+              <ScoreSummary
+                score={score}
+                totalQuestions={questions.length}
+              />
 
               <ResultsTable results={results} />
 

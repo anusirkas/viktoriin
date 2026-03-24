@@ -460,23 +460,13 @@
   border-radius: 0;
   font-size: 0.88rem;
   font-weight: 700;
-  border: 2px solid var(--black);
-}
-/*
-.result-badge.correct {
-  background: var(--black);
-  color: var(--white);
+  border: 2px solid var(--black); /*2px solid transparent;*/
 }
 
-.result-badge.incorrect {
-  background: var(--white);
+.result-badge.correct {
+  background: var(--success-bg);
   color: var(--black);
-}*/
-
-.result-badge.correct {
-  background: var(--black);
-  color: var(--white);
-  border: 2px solid var(--black);
+  border: 2px solid var(--success);
 }
 
 .result-badge.incorrect {
