@@ -26,6 +26,10 @@
   margin: 0 auto;
 }
 
+.live-score {
+  font-weight: 700;
+}
+
 .quiz-card {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid #d9d9d9;

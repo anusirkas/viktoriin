@@ -72,6 +72,10 @@ function App() {
                   Küsimus {currentQuestion + 1} / {questions.length}
                 </span>
 
+                <span className="live-score" aria-label={`Praegune skoor ${score}`}>
+                  Skoor: {score}
+                </span>
+
                 <button
                   type="button"
                   className="ghost-button"
