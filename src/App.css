@@ -87,7 +87,7 @@
 .intro-rules {
   display: grid;
   gap: 14px;
-  margin: 24px 0;
+  margin: 38px 0;
 }
 
 .intro-rule {
@@ -112,7 +112,6 @@
 .intro-rule p {
   margin: 0;
   padding: 18px 0;
-  line-height: 1.5;
   color: #111111;
 }
 .start-button-wrapper {
@@ -407,7 +406,6 @@
 .summary-message {
   margin: 0;
   color: var(--muted);
-  line-height: 1.5;
 }
 
 .results-section {
@@ -415,8 +413,8 @@
 }
 
 .results-title {
-  margin: 0 0 14px;
-  font-size: 1.2rem;
+  margin: 32px 0 20px;
+  text-align: center;
 }
 
 .results-table-wrapper {
@@ -429,9 +427,6 @@
 .results-table {
   width: 100%;
   border-collapse: collapse;
-}
-.results-table tbody tr:nth-child(even) {
-  background: var(--gray-light);
 }
 
 .results-table th,
@@ -530,17 +525,14 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-.intro-rule p,
+/*
 .option-text,
-.feedback-detail,
-.summary-message,
-.fun-fact {
+.feedback-detail {
   font-size: var(--body-md-size);
   line-height: var(--body-md-line);
   font-weight: 400;
 }
-
+*/
 .live-score,
 .result-badge,
 .results-table th,
